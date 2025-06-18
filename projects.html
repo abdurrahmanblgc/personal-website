@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects - Abdurrahman</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+        html {
+            scrollbar-width: none;
+        }
+
+        body {
+            background: radial-gradient(circle at center, 
+                rgba(200, 255, 0, 0.15) 0%,
+                rgba(15, 27, 27, 0.8) 35%,
+                #0B0B1B 70%,
+                #152028 100%
+            );
+            min-height: 100vh;
+            color: white;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 4rem;
+            background: rgba(11, 11, 27, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            background: #c8ff00;
+            border-radius: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c8ff00;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            max-width: 1400px;
+            margin: 120px auto 60px;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h1 {
+            font-size: 3.5rem;
+            color: #c8ff00;
+            margin-bottom: 20px;
+        }
+
+        .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #c8ff00;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .tech-tag {
+            background: rgba(200, 255, 0, 0.1);
+            color: #c8ff00;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: white;
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .live-demo {
+            background: #c8ff00;
+            color: #000;
+        }
+
+        .github-link {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .project-link:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        @media (min-width: 1920px) {
+            .projects-container {
+                max-width: 1800px;
+            }
+
+            .section-header h1 {
+                font-size: 4.5rem;
+            }
+
+            .section-header p {
+                font-size: 1.4rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px;
+            }
+
+            .project-card {
+                border-radius: 25px;
+            }
+
+            .project-image {
+                height: 300px;
+            }
+
+            .project-content {
+                padding: 40px;
+            }
+
+            .project-title {
+                font-size: 1.8rem;
+            }
+
+            .project-description {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .project-image {
+                height: 200px;
+            }
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: linear-gradient(90deg, #0B0B1B 0%, #152028 25%, #0F1B1B 50%, #152028 75%, #0B0B1B 100%);
+            padding: 60px 0 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            color: #c8ff00;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background: #c8ff00;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #c8ff00;
+        }
+
+        .footer-links i {
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: rgba(200, 255, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c8ff00;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #c8ff00;
+            color: #0a0f21;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Footer Styles */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .footer-section h3::after {
+                display: none;
+            }
+
+            .footer-section h3 {
+                text-decoration: none;
+                border-bottom: none;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .footer h3 {
+                display: inline-block;
+                margin-right: 60%;
+                white-space: nowrap;
+            }
+
+            .footer-about {
+                margin-right: 90% !important;
+                margin-left: 0px !important;
+            }
+
+            .footer p {
+                width: 90%;
+                max-width: 600px;
+                margin: 20px auto;
+                text-align: justify;
+                text-justify: inter-word;
+                font-size: 16px;
+                line-height: 1.6;
+            }
+
+            .footer-p {
+                margin: 0px !important;
+            }
+
+            .footer-section h3 {
+                text-decoration: none;
+            }
+
+            .social-links {
+                margin-right: 50%;
+            }
+
+            .footer-bottom {
+                margin: 0;
+                padding: 0px 0;
+                text-align: center;
+                height: 5vh;
+            }
+
+            .footer-bottom p {
+                margin-left: 20%;
+                font-size: 0.9rem;
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">
+            <p style="color: #c8ff00;">ABDURRAHMAN BİLGİÇ</p>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html#about">ABOUT ME</a></li>
+            <li><a href="index.html#skills">SKILLS</a></li>
+            <li><a href="index.html#contact">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <div class="projects-container">
+        <div class="section-header">
+            <h1>MY PROJECTS</h1>
+            <p>Here are some of my favorite projects that showcase my skills and passion for web development.</p>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Plumbing Company Project -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="image2.webp" alt="Plumbing Company Project">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Plumbing Company Website</h3>
+                    <p class="project-description">A modern website for a plumbing company featuring service listings, online booking, and customer testimonials.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HTML5</span>
+                        <span class="tech-tag">CSS3</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Node.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link live-demo">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <a href="#" class="project-link github-link">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Restaurant Project -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="game-1.webp" alt="Game Website">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Game Sales Website</h3>
+                    <p class="project-description">Featuring a wide range of products, this game sales website was built as a modern and functional platform with intuitive navigation, fast accessibility, and a dynamic design that allows users to effortlessly find the games they're looking for.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Express</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://serene-dolphin-4e2974.netlify.app/" class="project-link live-demo">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <a href="#" class="project-link github-link">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Building Project -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="FireShot Capture 215 - neurosync.com - 127.0.0.1.webp" alt="Building Project">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Start-Up Website</h3>
+                    <p class="project-description">Designed with a modern approach, this startup website offers a clean, aesthetic, and mobile-friendly interface that delivers a user-friendly experience while effectively reflecting the brand's vision as a digital showcase.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">Tailwind CSS</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link live-demo">
+                            <i class="fas fa-external-link-alt"></i>
+                            Live Demo
+                        </a>
+                        <a href="#" class="project-link github-link">
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-about">ABOUT ME</h3>
+                <p class="footer-p">Full-stack developer passionate about creating beautiful and functional web experiences. Specialized in Javascript and modern web technologies.</p>
+                <div class="social-links">
+                    <a href="https://github.com/abdurrahmanblgc"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/abdurrahman-bilgi%C3%A7-78883928b/"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href=" https://www.instagram.com/apoblgcc"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>QUICK LINKS</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                    <li><a href="#skills"><i class="fas fa-chevron-right"></i> Skills</a></li>
+                    <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                    <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>CONTACT INFO</h3>
+                <ul class="footer-links">
+                    <li><a href="mailto:abilgic07076@gmail.com"><i class="fas fa-envelope"></i> abilgic07076@gmail.com</a></li>
+                    <li><a href="tel:+905380293395"><i class="fas fa-phone"></i> +90 538 029 3395</a></li>
+                    <li><a href="https://www.google.com/maps?q=Mersin,Turkey" target="_blank"><i class="fas fa-map-marker-alt"></i> Mersin, Turkey</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Coded by Abdurrahman Bilgiç, 2025.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
