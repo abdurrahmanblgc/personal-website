@@ -1,1 +1,1 @@
-# Personality-Website
+# personal-website
